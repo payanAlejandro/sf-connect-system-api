@@ -1,0 +1,254 @@
+#%RAML 1.0
+title: API de sistema de Salesforce
+description: API para gestionar operaciones CRUD en Salesforce para los objetos Account, Contact, Opportunity, y CustomObject.
+version: v1
+baseUri: https://{host}:{port}/salesforce-api
+
+mediaType: application/json
+
+types:
+  Account:
+    type: object
+    properties:
+      id: string
+      name: string
+      industry: string
+      annualRevenue: number
+      phone: string
+      website: string
+
+  Contact:
+    type: object
+    properties:
+      id: string
+      firstName: string
+      lastName: string
+      email: string
+      phone: string
+      accountId: string
+
+  Opportunity:
+    type: object
+    properties:
+      id: string
+      name: string
+      stage: string
+      amount: number
+      closeDate: string  
+      accountId: string
+
+  CustomObject:
+    type: object
+    properties:
+      id: string
+      name: string
+      description: string
+      createdDate: string  
+
+/accounts:
+  get:
+    description: Obtiene todas las cuentas
+    responses:
+      200:
+        body:
+          application/json:
+            type: array
+            items: Account
+            
+  post:
+    description: Crea una nueva cuenta
+    body:
+      application/json:
+        type: Account
+    responses:
+      201:
+        body:
+          application/json:
+            type: Account
+
+  /{accountId}:
+    uriParameters:
+      accountId:
+        description: ID de la cuenta
+        type: string
+    get:
+      description: Obtiene detalles de una cuenta por ID
+      responses:
+        200:
+          body:
+            application/json:
+              type: Account
+    put:
+      description: Modifica una cuenta existente
+      body:
+        application/json:
+          type: Account
+      responses:
+        200:
+          body:
+            application/json:
+              type: Account
+    delete:
+      description: Elimina una cuenta existente
+      responses:
+        204:
+          description: La cuenta fue eliminada exitosamente
+        404:
+          description: La cuenta no fue encontrada
+
+
+/contacts:
+  get:
+    description: Obtiene todos los contactos
+    responses:
+      200:
+        body:
+          application/json:
+            type: array
+            items: Contact
+            
+  post:
+    description: Crea un nuevo contacto
+    body:
+      application/json:
+        type: Contact
+    responses:
+      201:
+        body:
+          application/json:
+            type: Contact
+
+  /{contactId}:
+    uriParameters:
+      contactId:
+        description: ID del contacto
+        type: string
+    get:
+      description: Obtiene detalles de un contacto por ID
+      responses:
+        200:
+          body:
+            application/json:
+              type: Contact
+    put:
+      description: Modifica un contacto existente
+      body:
+        application/json:
+          type: Contact
+      responses:
+        200:
+          body:
+            application/json:
+              type: Contact
+    delete:
+      description: Elimina un contacto existente
+      responses:
+        204:
+          description: El contacto fue eliminado exitosamente
+        404:
+          description: El contacto no fue encontrado
+
+
+/opportunities:
+  get:
+    description: Obtiene todas las oportunidades
+    responses:
+      200:
+        body:
+          application/json:
+            type: array
+            items: Opportunity
+            
+  post:
+    description: Crea una nueva oportunidad
+    body:
+      application/json:
+        type: Opportunity
+    responses:
+      201:
+        body:
+          application/json:
+            type: Opportunity
+
+
+  /{opportunityId}:
+    uriParameters:
+      opportunityId:
+        description: ID de la oportunidad
+        type: string
+    get:
+      description: Obtiene detalles de una oportunidad por ID
+      responses:
+        200:
+          body:
+            application/json:
+              type: Opportunity
+    put:
+      description: Modifica una oportunidad existente
+      body:
+        application/json:
+          type: Opportunity
+      responses:
+        200:
+          body:
+            application/json:
+              type: Opportunity
+    delete:
+      description: Elimina una oportunidad existente
+      responses:
+        204:
+          description: La oportunidad fue eliminada exitosamente
+        404:
+          description: La oportunidad no fue encontrada
+
+/customobject:
+  get:
+    description: Obtiene todos los objetos personalizados
+    responses:
+      200:
+        body:
+          application/json:
+            type: array
+            items: CustomObject
+            
+  post:
+    description: Crea un nuevo objeto personalizado
+    body:
+      application/json:
+        type: CustomObject
+    responses:
+      201:
+        body:
+          application/json:
+            type: CustomObject
+
+  /{customObjectId}:
+    uriParameters:
+      customObjectId:
+        description: ID del objeto personalizado
+        type: string
+    get:
+      description: Obtiene detalles de un objeto personalizado por ID
+      responses:
+        200:
+          body:
+            application/json:
+              type: CustomObject
+    put:
+      description: Modifica un objeto personalizado existente
+      body:
+        application/json:
+          type: CustomObject
+      responses:
+        200:
+          body:
+            application/json:
+              type: CustomObject
+    delete:
+      description: Elimina un objeto personalizado existente
+      responses:
+        204:
+          description: El objeto personalizado fue eliminado exitosamente
+        404:
+          description: El objeto personalizado no fue encontrado
+

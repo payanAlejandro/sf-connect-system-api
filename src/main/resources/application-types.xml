@@ -1,0 +1,159 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<types:mule xmlns:types="http://www.mulesoft.org/schema/mule/types">
+  <types:catalog>
+    <types:type name="postaccountdata" format="json">
+      <types:shape format="weave" example="examples/example-create-account.json"><![CDATA[%dw 2.0
+
+type postaccountdata = Array<{|  name: String,   billingAddress: String,   billingCity: String,   billingCountry: String,   billingPostalCode: String,   billingState: String|}> {"example": "[{\\\"name\\\":\\\"Alejandro\\\",\\\"billingAddress\\\":\\\"Av. Revolucion\\\",\\\"billingCity\\\":\\\"San Luis\\\",\\\"billingCountry\\\":\\\"Mexico\\\",\\\"billingPostalCode\\\":\\\"82748\\\",\\\"billingState\\\":\\\"MX\\\"}]"}
+
+]]></types:shape>
+    </types:type>
+    <types:type name="postcontactdata" format="json">
+      <types:shape format="weave" example="api/examples/contact-examples/contact-example.json"><![CDATA[%dw 2.0
+
+type postcontactdata = Array<{|  firstName: String,   lastName: String,   email: String,   phone: String|}> {"example": "[{\\\"firstName\\\":\\\"John\\\",\\\"lastName\\\":\\\"Doe\\\",\\\"email\\\":\\\"john.doe@example.com\\\",\\\"phone\\\":\\\"+1-555-555-5555\\\"}]"}
+
+]]></types:shape>
+    </types:type>
+    <types:type name="postopportunitydata" format="json">
+      <types:shape format="weave" example="api/examples/opportunities-examples/opportunity-example.json"><![CDATA[%dw 2.0
+
+type postopportunitydata = Array<{|  name: String,   stage: String,   amount: Number {"typeId": "int"},   closeDate: String|}> {"example": "[{\\\"name\\\":\\\"Opportunity A\\\",\\\"stage\\\":\\\"Prospecting\\\",\\\"amount\\\":100000,\\\"closeDate\\\":\\\"8\\/22\\/2024\\\"}]"}
+
+]]></types:shape>
+    </types:type>
+    <types:type name="postcustomdata" format="json">
+      <types:shape format="weave" example="api/examples/customObject-examples/customobject-example.json"><![CDATA[%dw 2.0
+
+type postcustomdata = Array<{|  name: String,   customField1__c: String,   customField2__c: String|}> {"example": "[{\\\"name\\\":\\\"Custom Object 1\\\",\\\"customField1__c\\\":\\\"Test\\\",\\\"customField2__c\\\":\\\"Test\\\"}]"}
+
+]]></types:shape>
+    </types:type>
+  </types:catalog>
+  <types:enrichment select="#a06d22e6-d258-4e95-b0f3-43438e6eff4d">
+    <types:processor-declaration>
+      <types:input-event>
+        <types:message>
+          <types:payload type="postaccountdata"/>
+        </types:message>
+      </types:input-event>
+    </types:processor-declaration>
+  </types:enrichment>
+  <types:enrichment select="#923aa0d3-f6b7-4055-b15d-4aca517383db">
+    <types:processor-declaration>
+      <types:input-event>
+        <types:message>
+          <types:payload type="postaccountdata"/>
+        </types:message>
+      </types:input-event>
+    </types:processor-declaration>
+  </types:enrichment>
+  <types:enrichment select="#76756df4-68a8-462b-add9-9ba469500fe3">
+    <types:processor-declaration>
+      <types:input-event>
+        <types:message>
+          <types:payload type="postaccountdata"/>
+        </types:message>
+      </types:input-event>
+    </types:processor-declaration>
+  </types:enrichment>
+  <types:enrichment select="#c3d59613-d6fe-4cf6-974c-dba1fa18d196">
+    <types:processor-declaration>
+      <types:input-event>
+        <types:message>
+          <types:payload type="postaccountdata"/>
+        </types:message>
+      </types:input-event>
+    </types:processor-declaration>
+  </types:enrichment>
+  <types:enrichment select="#54850c08-1754-48a4-b0ce-d3060ea5c166">
+    <types:processor-declaration>
+      <types:input-event>
+        <types:message>
+          <types:payload type="postaccountdata"/>
+        </types:message>
+      </types:input-event>
+    </types:processor-declaration>
+  </types:enrichment>
+  <types:enrichment select="#73d0a6b1-6798-4b2b-b41c-61e19b46937a">
+    <types:processor-declaration>
+      <types:input-event>
+        <types:message>
+          <types:payload type="postaccountdata"/>
+        </types:message>
+      </types:input-event>
+    </types:processor-declaration>
+  </types:enrichment>
+  <types:enrichment select="#1251894d-4e98-4cac-aa27-9dad2abb6cf7">
+    <types:processor-declaration>
+      <types:input-event>
+        <types:message>
+          <types:payload type="postaccountdata"/>
+        </types:message>
+      </types:input-event>
+    </types:processor-declaration>
+  </types:enrichment>
+  <types:enrichment select="#ea530d23-f819-413c-b0c1-df2f3b152870">
+    <types:processor-declaration>
+      <types:input-event>
+        <types:message>
+          <types:payload type="postcontactdata"/>
+        </types:message>
+      </types:input-event>
+    </types:processor-declaration>
+  </types:enrichment>
+  <types:enrichment select="#6e6d8fac-9628-4279-9b3f-181cfe836936">
+    <types:processor-declaration>
+      <types:input-event>
+        <types:message>
+          <types:payload type="postopportunitydata"/>
+        </types:message>
+      </types:input-event>
+    </types:processor-declaration>
+  </types:enrichment>
+  <types:enrichment select="#99cb1f27-b748-414c-aec7-c91ebd83172e">
+    <types:processor-declaration>
+      <types:input-event>
+        <types:message>
+          <types:payload type="postcustomdata"/>
+        </types:message>
+      </types:input-event>
+    </types:processor-declaration>
+  </types:enrichment>
+  <types:enrichment select="#beafa290-4cc3-4eec-8e9a-5c0d081da992">
+    <types:processor-declaration>
+      <types:input-event>
+        <types:message>
+          <types:payload type="postaccountdata"/>
+        </types:message>
+      </types:input-event>
+    </types:processor-declaration>
+  </types:enrichment>
+  <types:enrichment select="#aad02532-3901-47e7-9063-a9219f834e81">
+    <types:processor-declaration>
+      <types:input-event>
+        <types:message>
+          <types:payload type="postcontactdata"/>
+        </types:message>
+      </types:input-event>
+    </types:processor-declaration>
+  </types:enrichment>
+  <types:enrichment select="#cd58f02d-04f7-43a1-88c8-56d9e88250ac">
+    <types:processor-declaration>
+      <types:input-event>
+        <types:message>
+          <types:payload type="postopportunitydata"/>
+        </types:message>
+      </types:input-event>
+    </types:processor-declaration>
+  </types:enrichment>
+  <types:enrichment select="#97034bbf-650c-462e-92f6-554fce31d3be">
+    <types:processor-declaration>
+      <types:input-event>
+        <types:message>
+          <types:payload type="postcustomdata"/>
+        </types:message>
+      </types:input-event>
+    </types:processor-declaration>
+  </types:enrichment>
+</types:mule>

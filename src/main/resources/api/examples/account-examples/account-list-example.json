@@ -1,0 +1,18 @@
+[
+  {
+    "id": "0011X00000Zyjg7QAB",
+    "name": "Corporation",
+    "industry": "Technology",
+    "annualRevenue": 50000000,
+    "phone": "+1-555-555-5555",
+    "website": "https://www.acme-corp.com"
+  },
+  {
+    "id": "0011X00000Zyjg8QAB",
+    "name": "Global Industries",
+    "industry": "Manufacturing",
+    "annualRevenue": 75000000,
+    "phone": "+1-555-555-1234",
+    "website": "https://www.global-industries.com"
+  }
+]

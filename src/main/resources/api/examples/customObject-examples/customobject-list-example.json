@@ -1,0 +1,14 @@
+[
+  {
+    "id": "a011X00000mD0A7QAB",
+    "name": "Custom Object 1",
+    "description": "Description for Custom Object 1",
+    "createdDate": "2024-01-15"
+  },
+  {
+    "id": "a011X00000mD0A8QAB",
+    "name": "Custom Object 2",
+    "description": "Description for Custom Object 2",
+    "createdDate": "2024-02-20"
+  }
+]

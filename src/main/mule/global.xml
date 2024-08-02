@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:tls="http://www.mulesoft.org/schema/mule/tls"
+	xmlns:apikit="http://www.mulesoft.org/schema/mule/mule-apikit"
+	xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:salesforce="http://www.mulesoft.org/schema/mule/salesforce"
+	xmlns:secure-properties="http://www.mulesoft.org/schema/mule/secure-properties"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="
+http://www.mulesoft.org/schema/mule/mule-apikit http://www.mulesoft.org/schema/mule/mule-apikit/current/mule-apikit.xsd 
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/secure-properties http://www.mulesoft.org/schema/mule/secure-properties/current/mule-secure-properties.xsd
+http://www.mulesoft.org/schema/mule/salesforce http://www.mulesoft.org/schema/mule/salesforce/current/mule-salesforce.xsd
+http://www.mulesoft.org/schema/mule/tls http://www.mulesoft.org/schema/mule/tls/current/mule-tls.xsd">
+	<configuration-properties doc:name="Configuration properties" doc:id="169fe100-cc82-47b7-9a34-e896dfef6da0" file="${env}.properties" />
+	
+	<global-property doc:name="Global Property" doc:id="81e0cee9-0d08-4f61-b57e-63258e8fbb76" name="env" value="staging" />
+	
+	<secure-properties:config name="Secure_Properties_Config" doc:name="Secure Properties Config" doc:id="30e09377-014a-480c-9d1b-f34b821494c8" file="${env}.properties" key="${key}" />
+	
+	<global-property doc:name="Global Property" doc:id="c1160051-6860-48c2-9ead-9d476bac194c" name="key" value="WV4v3e6wkChVFrQN" />
+	
+	<salesforce:sfdc-config name="Salesforce_Config" doc:name="Salesforce Config" doc:id="77d1830e-7b72-4b05-a776-6e0b3dee1da3" >
+		<salesforce:basic-connection username="${sf.username}" password="${secure::sf.password}" securityToken="${secure::sf.token}" />
+	</salesforce:sfdc-config>
+	
+	    <http:listener-config name="salesforce-system-api-httpListenerConfig">
+        <http:listener-connection host="0.0.0.0" port="${https.port}" protocol="HTTPS">
+			<tls:context >
+				<tls:key-store type="jks" path="${jks.path}" alias="${jks.alias}" keyPassword="${secure::jks.password}" password="${secure::jks.password}" />
+			</tls:context>
+		</http:listener-connection>
+    </http:listener-config>
+    
+    <apikit:config name="salesforce-system-api-config" 
+                   api="api/salesforce-system-api.raml" 
+                   outboundHeadersMapName="outboundHeaders" 
+                   httpStatusVarName="httpStatus" disableValidations="true">
+		<apikit:flow-mappings >
+			<apikit:flow-mapping resource="/accounts" action="post" content-type="application/json" flow-ref="postAccountFlow" />
+			<apikit:flow-mapping resource="/contacts" action="post" content-type="application/json" flow-ref="postContactFlow" />
+			<apikit:flow-mapping resource="/opportunities" action="post" content-type="application/json" flow-ref="postOpportunityFlow" />
+			<apikit:flow-mapping resource="/customobject" action="post" content-type="application/json" flow-ref="postCustomObjectFlow" />
+		</apikit:flow-mappings>
+	</apikit:config>
+	
+	
+</mule>

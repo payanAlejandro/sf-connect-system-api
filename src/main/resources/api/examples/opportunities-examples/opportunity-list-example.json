@@ -1,0 +1,18 @@
+[
+  {
+    "id": "0061X00000k02M7QAB",
+    "name": "Opportunity A",
+    "stage": "Prospecting",
+    "amount": 100000,
+    "closeDate": "2024-12-31",
+    "accountId": "0011X00000Zyjg7QAB"
+  },
+  {
+    "id": "0061X00000k02M8QAB",
+    "name": "Opportunity B",
+    "stage": "Negotiation",
+    "amount": 250000,
+    "closeDate": "2024-11-30",
+    "accountId": "0011X00000Zyjg8QAB"
+  }
+]
